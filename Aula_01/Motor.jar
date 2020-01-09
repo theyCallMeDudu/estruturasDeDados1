@@ -1,0 +1,13 @@
+package aula_01;
+
+public class Motor {
+	private double cilindrada;
+	
+	public Motor(double cilindrada) {
+		this.cilindrada = cilindrada;
+	}
+
+	public double getCilindrada() {
+		return cilindrada;
+	}
+}
