@@ -33,5 +33,6 @@ public interface IListaInteiros {
 	// Troca um numero de posicao com outro
 	public boolean trocar(int p1, int p2);
 	
-	
+	// Conta o numero de ocorrências do valor v
+	public int contaOcorrencias(int v);
 }
