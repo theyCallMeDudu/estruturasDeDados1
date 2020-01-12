@@ -1,0 +1,210 @@
+package ex_02;
+
+import ex_01.IListaInteiros;
+
+public class ListaInteiros implements IListaInteiros {
+
+	private Integer[] numeros;
+	private int qtdNumeros;
+	
+	public ListaInteiros() {
+		
+		numeros = new Integer[10];
+		qtdNumeros = 0;
+	}
+	
+	public boolean inserirPosicao(int num, Integer p) {
+		
+		if(p < 0 || p > qtdNumeros) {
+			return false;
+		}
+		
+		if(qtdNumeros == numeros.length) {
+			aumentaVetor();
+		}
+		
+		moveDireita(p);
+		
+		numeros[p] = num;
+		qtdNumeros++;
+		
+		return true;
+	}
+	
+	@Override
+	public boolean inserirInicio(int num) {
+		return inserirPosicao(0, num);
+	}
+	
+	@Override
+	public boolean inserirFim(int num) {
+		return inserirPosicao(qtdNumeros, num);
+	}
+	
+	public Integer alterar(int p, int num) {
+		if(p < 0 || p > qtdNumeros - 1) {
+			return null;
+		}
+		
+		int old = numeros[p];
+		
+		numeros[p] = num;
+		
+		return old;
+	}
+
+	public Integer removerPosicao(int p) {
+		
+		if(p < 0 || p > qtdNumeros - 1) {
+			return null;
+		}
+		
+		// Questao 2
+		if(qtdNumeros == numeros.length / 4) {
+			// Letra b
+			if(numeros.length < 10) {
+				return null;
+			}
+			//Letra a
+			diminuiVetor();
+	
+		}
+		
+		int old = numeros[p];
+		
+		moveEsquerda(p);
+		
+		numeros[qtdNumeros - 1] = null;
+		qtdNumeros--;
+		
+		return old;
+	}
+
+	@Override
+	public Integer removerInicio() {
+		return removerPosicao(0);
+	}
+	
+	@Override
+	public Integer removerFim() {
+		return removerPosicao(qtdNumeros);
+	}
+
+	public Integer remover(int num) {
+		int p = posicao(num);
+		
+		if(p != -1) {
+			
+			int old = getNumero(p);
+			
+			removerPosicao(p);
+			
+			return old;
+			
+		}
+		
+		return null;
+		
+	}
+	
+	public Integer getNumero(int p) {
+		
+		if(p < 0 || p > qtdNumeros - 1) {
+			return null;
+		}
+		return numeros[p];
+		
+	}
+
+	public boolean pertence(int num) {
+		return posicao(num) != -1;
+	}
+	
+	public int posicao(int num) {
+		
+		for(int i = 0; i < qtdNumeros; i++) {
+			if(numeros[i] == num) {
+				return i;
+			}
+		}
+		
+		return -1;
+		
+	}
+
+	public int quantidade() {
+		return qtdNumeros;
+	}
+
+	public boolean estaVazia() {
+		return qtdNumeros == 0;
+	}
+
+	public void removerTodos() {
+		numeros = new Integer[10];
+		qtdNumeros = 0;
+	}
+
+	public boolean trocar(Integer p1, Integer p2) {
+		
+		if(p1 < 0 || p1 > qtdNumeros) {
+			return false;
+		} else if(p2 < 0 || p2 > qtdNumeros) {
+			return false;
+		}
+		
+		int aux = numeros[p1];
+		numeros[p1] = numeros[p2];
+		numeros[p2] = aux;
+		
+		return true;
+	}
+	
+	public String toString() {
+		StringBuilder buffer = new StringBuilder();
+		
+		buffer.append("[");
+		
+		for(int i = 0; i < qtdNumeros - 1; i++) {
+			buffer.append(numeros[i]);
+			buffer.append(", ");
+		}
+		
+		buffer.append(numeros[qtdNumeros - 1]);
+		buffer.append("]");
+		
+		return buffer.toString();
+	}
+
+	private void moveDireita(int p){
+		for(int i = qtdNumeros - 1; i >= p; i--) {
+			numeros[i + 1] = numeros[i];
+		}
+	}
+	
+	private void moveEsquerda(int p) {
+		for(int i = p; i < qtdNumeros; i++) {
+			numeros[i] = numeros[i + 1];
+		}
+	}
+	
+	private void aumentaVetor() {
+		int novoTam = numeros.length + numeros.length / 2;
+		
+		Integer[] aux = new Integer[novoTam];
+		
+		System.arraycopy(numeros, 0, aux, 0, qtdNumeros);
+		
+		numeros = aux;
+	}
+	
+	private void diminuiVetor() {
+		int novoTam = numeros.length - numeros.length / 2;
+		
+		Integer[] aux = new Integer[novoTam];
+		
+		System.arraycopy(numeros, 0, aux, 0, qtdNumeros);
+		
+		numeros = aux;
+	}
+}
