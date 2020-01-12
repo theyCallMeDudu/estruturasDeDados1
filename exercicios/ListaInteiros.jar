@@ -145,7 +145,7 @@ public class ListaInteiros implements IListaInteiros {
 		qtdNumeros = 0;
 	}
 
-	public boolean trocar(Integer p1, Integer p2) {
+	public boolean trocar(int p1, int p2) {
 		
 		if(p1 < 0 || p1 > qtdNumeros) {
 			return false;
