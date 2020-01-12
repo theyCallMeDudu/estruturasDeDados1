@@ -1,0 +1,37 @@
+package ex_01;
+
+public interface IListaInteiros {
+	
+	// Define os números e suas posições
+	public boolean inserirInicio(int num);
+	public boolean inserirFim(int num);
+	public boolean inserirPosicao(int num, Integer p);
+	
+	// Altera a posição de um número
+	public Integer alterar(int p, int num);
+	
+	// Remove números e posições
+	public Integer removerInicio();
+	public Integer removerFim();
+	public Integer removerPosicao(int p);
+	public Integer remover(int num);
+	
+	// Retorna números e posições
+	public Integer getNumero(int p);
+	public int posicao(int num); 
+	
+	// Verifica possíveis estados da lista
+	public boolean pertence(int num);
+	public boolean estaVazia();
+	
+	// Retorna a quantidade de intens da lista
+	public int quantidade();
+	
+	// Esvazia a lista
+	public void removerTodos();
+	
+	// Troca um numero de posicao com outro
+	public boolean trocar(int p1, int p2);
+	
+	
+}
