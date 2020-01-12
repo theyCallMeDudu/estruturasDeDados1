@@ -159,6 +159,18 @@ public class ListaInteiros implements IListaInteiros {
 		
 		return true;
 	}
+
+	public int contaOcorrencias(int v) {
+		int totalOcorrencias = 0;
+		
+		for(int i = 0; i < qtdNumeros; i++) {
+			if(numeros[i] == v) {
+				totalOcorrencias++;
+			}
+		}
+		
+		return totalOcorrencias;
+	}
 	
 	public String toString() {
 		StringBuilder buffer = new StringBuilder();
