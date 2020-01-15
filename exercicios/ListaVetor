@@ -1,0 +1,194 @@
+package ex_04;
+
+import ex_03.ILista;
+
+public class ListaVetor<T> implements ILista<T>{
+	
+	private T[]	itens;
+	private int qtdItens;
+	
+	public ListaVetor(){
+		itens = (T[]) new Object[10];
+		qtdItens = 0;
+	}
+	
+	@Override
+	public boolean inserirInicio(T e) {
+		return inserirPosicao(0, e);
+	}
+	
+	@Override
+	public boolean inserirFim(T e) {
+		return inserirPosicao(qtdItens, e);
+	}
+	
+	public boolean inserirPosicao(int p, T e) {
+		if(p < 0 || p > qtdItens) {
+			return false;
+		}
+		
+		if(qtdItens == itens.length) {
+			aumentaVetor();
+		}
+		
+		moveDireita(p);
+		itens[p] = e;
+		qtdItens++;
+		
+		return true;
+	}
+	
+	public T alterar(int p, T e) {
+		if(p < 0 || p > qtdItens - 1) {
+			return null;
+		}
+		
+		T old = (T) itens[p];
+		itens[p] = e;
+		
+		return old;
+	}
+	
+	@Override
+	public T removerInicio() {
+		return removerPosicao(0);
+	}
+	
+	@Override
+	public T removerFim() {
+		return removerPosicao(qtdItens - 1);
+	}
+	
+	public T removerPosicao(int p) {
+		if(p < 0 || p > qtdItens) {
+			return null;
+		}
+		
+		T old = (T) itens[p];
+		
+		moveEsquerda(p);
+		itens[qtdItens - 1] = null;
+		qtdItens--;
+		
+		return old;		
+	}
+	
+	public T remover(T e) {
+		if(e != null) {
+			int p = posicao(e);
+			
+			if(p != -1) {
+				T old = getItem(p);
+				removerPosicao(p);
+				return old;
+			}
+		}
+		return null;
+	}
+			
+	public T getItem(int p) {
+		if(p < 0 || p > qtdItens) {
+			return null;
+		}
+		
+		return itens[p];
+	}
+	
+	public int posicao(T e) {
+		for(int i = 0; i < itens.length; i++) {
+			if(itens[i].equals(e)) {
+				return i;
+			}
+		}
+		return -1;
+	} 
+			
+	public boolean pertence(T e) {
+
+		for(int i = 0; i < itens.length; i++) {
+			if(itens[i].equals(e)) {
+				return true;
+			}
+		}
+		return false;
+	}
+			
+	public boolean estaVazia() {
+		return qtdItens == 0;
+	}
+	
+	public int quantidade() {
+		return qtdItens;
+	}
+			
+	public void removerTodos() {
+		itens = (T[]) new Object[10];
+		qtdItens = 0;
+	}
+	
+	public boolean trocar(int p1, int p2) {
+		if(p1 < 0 || p1 > qtdItens) {
+			return false;
+		}
+		else if(p2 < 0 || p2 > qtdItens){
+			return false;
+		}
+		
+		T aux = itens[p1];
+		itens[p1] = itens[p2];
+		itens[p2] = aux;
+		
+		return true;
+	}
+			
+	public int contaOcorrencias(T e) {
+		int totalE = 0;
+		
+		for(int i = 0; i < itens.length; i++) {
+			if(itens[i].equals(e)) {
+				totalE++;
+			}
+		}
+		return totalE;
+	}
+	
+	
+//	public ILista<T> intersecao(ILista<T> outraLista) {
+//		
+//		T inter[] = (T[]) new Object[itens.length];
+//		T elem;
+//		
+//		for(int i = 0; i < this.length; i++) {
+//			for(int j = 0; j < outraLista.length; j++) {
+//				if(itens[i].equals(outraLista[j])) {
+//					elem = itens[i];
+//					inter.inserirInicio(elem);
+//				}
+//			}
+//		}
+//	}
+	
+			
+	private void aumentaVetor() {
+        int novoTam = itens.length + (itens.length / 2);
+        
+        T[] aux = (T[]) new Object[novoTam];
+        
+        System.arraycopy(itens, 0, aux, 0, qtdItens);
+        
+        itens = aux;
+	}
+			
+	private void moveDireita(int p) {
+        for (int i = qtdItens - 1; i >= p; i--)
+            itens[i + 1] = itens[i];
+    }
+    
+    private void moveEsquerda(int p) {
+        for (int i = p; i < qtdItens; i++)
+            itens[i] = itens[i + 1];
+    }
+
+
+
+}
