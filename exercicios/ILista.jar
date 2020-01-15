@@ -1,0 +1,39 @@
+package ex_03;
+
+public interface ILista<T> {
+		
+		// Define os números e suas posições
+		public boolean inserirInicio(T e);
+		public boolean inserirFim(T e);
+		public boolean inserirPosicao(int p, T e);
+		
+		// Altera a posição de um número
+		public T alterar(int p, T e);
+		
+		// Remove números e posições
+		public T removerInicio();
+		public T removerFim();
+		public T removerPosicao(int p);
+		public T remover(T e);
+		
+		// Retorna números e posições
+		public T getItem(int p);
+		public int posicao(T e); 
+		
+		// Verifica possíveis estados da lista
+		public boolean pertence(T e);
+		public boolean estaVazia();
+		
+		// Retorna a quantidade de intens da lista
+		public int quantidade();
+		
+		// Esvazia a lista
+		public void removerTodos();
+		
+		// Troca um numero de posicao com outro
+		public boolean trocar(int p1, int p2);
+		
+		// Conta o numero de ocorrências do valor v
+		public int contaOcorrencias(T e);
+	
+}
