@@ -1,0 +1,215 @@
+package trab_01;
+
+public interface IListaOrdenada<T> {
+
+	/**
+	 * Define as operacoes da estrutura de dados LISTA ORDENADA
+	 * para o trabalho 1 de da disciplina de Estrutura de Dados 1
+	 */
+
+	    /**
+	     * Insere elemento e na devida posicao
+	     * respeitando a ordem
+	     * @param p: posicao na lista
+	     * @param e: elemento 
+	     */
+	    public boolean inserir(T e);
+	    
+	    /**
+	     * Altera o valor da posicao p da lista para e.
+	     * O primeiro item da lista esta na posicao ZERO.
+	     * @param p PosiÃ§Ã£o de alteraÃ§Ã£o. Valores vÃ¡lidos: 0 a quantidade-1.
+	     * @param e Item a ser inserido.
+	     * @return Antigo item na posiÃ§Ã£o p da lista; ou null, caso p seja invÃ¡lido.
+	     */
+	    
+	    public T alterar(int p, T e);
+
+	    /**
+	     * Remove o item do inÃ­cio da lista e o retorna.
+	     * 
+	     * @return Item do inÃ­cio da lista; ou null, se a lista estiver vazia.
+	     */
+	    
+	    public T removerInicio();
+
+	    /**
+	     * Remove o item do fim da lista e o retorna.
+	     * 
+	     * @return Item do fim da lista; ou null, se a lista estiver vazia.
+	     */
+	    
+	    public T removerFim();
+
+	    /**
+	     * Remove o item da posiÃ§Ã£o p da lista e o retorna.
+	     * 
+	     * @param p PosiÃ§Ã£o de remoÃ§Ã£o. Valores vÃ¡lidos: 0 a quantidade-1.
+	     * @return Item removido; ou null, caso p seja invÃ¡lido. 
+	     */
+	    
+	    public T removerPosicao(int p);
+	    
+	    /**
+	     * Remove o item e da lista e o retorna.
+	     * 
+	     * @param e Item a ser removido.
+	     * @return Item removido; ou null, caso e nÃ£o exista. 
+	     */
+	    
+	    public T remover(T e);
+	    
+	    /**
+	     * Retorna o item da posiÃ§Ã£o p da lista.
+	     * O primeiro item da lista estÃ¡ na posiÃ§Ã£o ZERO.
+	     * 
+	     * @param p PosiÃ§Ã£o do item
+	     * @return Item da posiÃ§Ã£o p; ou null, caso p seja invÃ¡lido.
+	     */
+	    
+	    public T getItem(int p);
+	    
+	    /**
+	     * Verifica se a lista contÃ©m o item e.
+	     * 
+	     * @param e Item a ser buscado.
+	     * @return Verdadeiro se item e pertence Ã  lista; ou falso, caso contrÃ¡rio.
+	     */
+	    
+	    public boolean contem(T e);
+	    
+	    /**
+	     * Retorna a primeira posiÃ§Ã£o do item e na lista.
+	     * 
+	     * @param e Item a ser buscado.
+	     * @return Primeira posiÃ§Ã£o do item e na lista; ou -1, se e nÃ£o pertence Ã  lista.
+	     */
+	    
+	    public int posicao(T e);
+	    
+	    /**
+	     * Retorna a quantidade de itens da lista.
+	     * 
+	     * @return Quantidade de itens da lista
+	     */
+	    
+	    public int quantidade();
+
+	    /**
+	     * Verifica se a lista estÃ¡ vazia.
+	     * @return Verdadeiro, se a lista estiver vazia; ou falso, caso contrÃ¡rio 
+	     */
+	    
+	    public boolean estaVazia();
+	    
+	    /**
+	     * Remove todos os itens da lista.
+	     */
+	    
+	    public void removerTodos();
+	    
+
+		/**
+		 * Troca o valor da posição p1 com o valor da posição p2
+		 * @param p1 Posição p1
+		 * @param p2 Posição p2
+		 * @return Verdadeiro, se a troca foi feita; ou falso, caso contrário.
+		 */
+	    
+		public boolean trocar(int p1, int p2);
+
+		/**
+		 * Conta o número de ocorrências do item e
+		 * @param e Item a ser procurado
+		 * @return Número de ocorrência do item e
+		 */
+		
+		public int contaOcorrencias(T e);
+		
+		/**
+		 * Verifica se a lista contém itens duplicados
+		 * @return Verdadeiro, se a lista contém itens duplicados; ou falso, caso contrário
+		 */
+		
+		public boolean contemDuplicatas();
+
+		/**
+		 * Remove os valores duplicados da lista
+		 */
+		
+		public void removerDuplicatas();
+
+		/**
+		 * Gera uma cópia da lista
+		 * @return Cópia da lista
+		 */
+		
+		public IListaOrdenada<T> copiar();
+
+		/**
+		 * Verifica se duas listas são iguais
+		 * @param outraLista A outra lista que vai ser usada na comparação
+		 * @return Verdadeiro, se as listas são iguais; ou falso, caso contrário
+		 */
+		
+		public boolean igual(IListaOrdenada<T> outraLista);
+
+		/**
+		 * Inverte a posição os elementos da lista
+		 */
+		
+		public void inverter();
+
+		/**
+		 * Intercala os itens de duas listas gerando uma terceira lista
+		 * @param outraLista A outra lista que vai ser usada na intercalação
+		 * @return A nova lista com os valores intercalados
+		 */
+		
+		public IListaOrdenada<T> intercalar(IListaOrdenada<T> outraLista);
+
+		/**
+		 * Concatena duas listas gerando uma terceira lista
+		 * @param outraLista A outra lista que vai ser usada na concatenação
+		 * @return A nova lista com os valores concatenados
+		 */
+		
+		public IListaOrdenada<T> concatenar(IListaOrdenada<T> outraLista);
+
+		/**
+		 * Calcula a interseção de duas listas, gerando uma terceira lista sem duplicatas
+		 * @param outraLista A outra lista que vai ser usada na interseção
+		 * @return A nova lista com os valores da interseção, sem valores duplicados
+		 */
+		
+		public IListaOrdenada<T> intersecao(IListaOrdenada<T> outraLista);
+
+		/**
+		 * Calcula a união de duas listas, gerando uma terceira lista sem duplicatas
+		 * @param outraLista A outra lista que vai ser usada na união
+		 * @return A nova lista com os valores da união, sem valores duplicados
+		 */
+		
+		public IListaOrdenada<T> uniao(IListaOrdenada<T> outraLista);
+
+		/**
+		 * Separa a lista em duas: uma com os valores da posiçao 0 a p e outra
+		 * com os valores da posição p+1 em diante
+		 * @param p Posição de particionamento da lista
+		 * @return A segunda lista do particionamento
+		 */
+		
+		public IListaOrdenada<T> separar(int p);
+		
+	     /**
+	      * Ordena os itens da lista de forma crescente
+	      */
+		
+		public void ordernarCrescente();
+		
+		/**
+	     * Ordena os itens da lista de forma decrescente
+	     */
+		
+		public void ordenarDecrescente();
+	}
