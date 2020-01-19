@@ -1,0 +1,39 @@
+package trab_01;
+
+public class ListaOrdenada<T> implements IListaOrdenada<T> {
+
+	protected No head;
+	protected int qtdItens;
+	
+	protected class No {
+		public T item;
+		public No prox;
+		
+		public No(T item) {
+			this.item = item;
+			this.prox = null;
+		}
+	}
+	
+	public boolean inserir(T e) {
+		
+		No aux, no;
+		No ant = null;
+		
+		no = new No(e);
+		
+		for (aux = head; ((aux != null) && (aux.item.compareTo(e)); aux = aux.prox) {
+			// Falta implementar compareTo() para finalizar este metodo
+		}
+		
+	}
+	
+	public boolean estaVazia() {
+		return head == null;
+	}
+	
+	public int compareTo(T e) {
+		return 0;
+	}
+	
+}
