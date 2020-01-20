@@ -1,11 +1,22 @@
 package trab_01;
 
-public class ListaOrdenada<T> implements IListaOrdenada<T> {
+public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
 
 	protected No head;
 	protected int qtdItens;
 	
-	protected class No {
+	public ListaOrdenada(){
+		
+		/**
+		 *  Definir se a lista sera ordenada
+		 *  crescente ou decrescente, podendo
+		 *  esta caracteristica ser alterada
+		 *  a qualquer momento
+		 */
+		
+	}
+	
+	protected class No<T extends Comparable> implements Comparable<No> {
 		public T item;
 		public No prox;
 		
@@ -13,27 +24,287 @@ public class ListaOrdenada<T> implements IListaOrdenada<T> {
 			this.item = item;
 			this.prox = null;
 		}
+
+		public int compareTo(No e) {
+			return this.item.compareTo(e);
+		}	
+		
 	}
 	
-	public boolean inserir(T e) {
+	public boolean inserir(T e) { //Incompleto ***
 		
 		No aux, no;
 		No ant = null;
 		
+//		aux = head;
 		no = new No(e);
 		
-		for (aux = head; ((aux != null) && (aux.item.compareTo(e)); aux = aux.prox) {
-			// Falta implementar compareTo() para finalizar este metodo
-		}
+//		while(aux != null) {
+//			ant = aux;
+//			aux = aux.prox;
+//			
+//		}
+		
 		
 	}
 	
 	public boolean estaVazia() {
 		return head == null;
 	}
-	
-	public int compareTo(T e) {
-		return 0;
+
+	@Override
+	public T alterar(int p, T e) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public T removerInicio() {
+		
+		 No no;
+	     T item;
+	        
+	     if (qtdItens == 0) {
+	    	 return null;
+	     }
+	     
+        no = head;
+        head = head.prox;
+		
+        item = no.item;
+        no.item = null;
+        no.prox = null;
+        
+        qtdItens--;
+        
+        return item;
+
+	}
+
+	@Override
+	public T removerFim() {
+        No ultimo, aux;
+        T item;
+        
+        if (qtdItens == 0)
+            return null;
+        
+        if (qtdItens == 1)
+            return removerInicio();
+        
+        // Localiza o antepenultimo no
+        aux = localizarNo(qtdItens-2);
+        
+        // Localiza  ultimo no
+        ultimo = aux.prox;
+ 
+        aux.prox = null;
+        
+        item = ultimo.item;
+        ultimo.item = null;
+        
+        qtdItens--;
+        
+        return item;
+
+	}
+
+	@Override
+	public T removerPosicao(int p) {
+		No no, aux;
+        T item;
+        
+        // Checa se a posicao p e valida
+        if (p < 0 || p >= qtdItens)
+            return null;
+        
+        // Se p for a 1a posicao, removera do inicio
+        // Se p for a ultima, removera do fim
+        if (p == 0)
+            return removerInicio();
+        else if (p == qtdItens-1)
+            return removerFim();
+        
+        // AUX = numero da posicao p-1
+        aux = localizarNo(p-1);
+        
+        no = aux.prox;
+        aux.prox = no.prox;
+        
+        item = no.item;
+        no.item = null;
+        no.prox = null;
+        
+        qtdItens--;
+        
+        return item;
+	}
+		
+	@Override
+	public T remover(T e) {
+		if (e != null) {
+            int p = posicao(e);
+            
+            if (p != -1) {
+                T old = getItem(p);
+                
+                removerPosicao(p);
+                
+                return old;
+            }
+        }
+        
+		return null;
+	}
+	
+	@Override
+	public T getItem(int p) {
+		if (p < 0 || p >= qtdItens)
+            return null;
+        
+        return localizarNo(p).item;
+	}
+
+	@Override
+	public boolean contem(T e) {
+		return posicao(e) != -1;
+	}
+
+	@Override
+	public int posicao(T e) {
+		No aux = head;
+        int p = 0;
+        
+        while (aux != null) {
+            if (e.equals(aux.item))
+                return p;
+            aux = aux.prox;
+            p++;
+        }
+        
+        return -1;
+	}
+
+	@Override
+	public int quantidade() {
+		return qtdItens;
+	}
+
+	@Override
+	public void removerTodos() {
+		No aux;
+        
+        while (head != null) {
+            aux = head;
+            head = head.prox;
+            aux.item = null;
+            aux.prox = null;
+        }
+        
+        qtdItens = 0;
+	}
+
+	@Override
+	public int contaOcorrencias(T e) {
+		No aux = head;
+		int totalE = 0;
+		
+		while(aux != null) {
+			totalE++;
+		}
+		return totalE;
+	}
+
+	@Override
+	public boolean contemDuplicatas() { //Incompleto ***
+		No aux = head;
+		
+		while(aux != null) {
+			if(aux.item.compareTo(aux.prox)) {
+				return true;
+			}
+			return false;
+		}
+	}
+
+	@Override
+	public void removerDuplicatas() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IListaOrdenada<T> copiar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean igual(IListaOrdenada<T> outraLista) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void inverter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IListaOrdenada<T> intercalar(IListaOrdenada<T> outraLista) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IListaOrdenada<T> concatenar(IListaOrdenada<T> outraLista) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IListaOrdenada<T> intersecao(IListaOrdenada<T> outraLista) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IListaOrdenada<T> uniao(IListaOrdenada<T> outraLista) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IListaOrdenada<T> separar(int p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void ordernarCrescente() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ordenarDecrescente() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	// Metodos auxiliares privados
+	private No localizarNo(int p) {
+		No aux = head;
+        
+        while (p > 0) {
+            aux = aux.prox;
+            p--;
+        }
+        
+        return aux;
+	}
+	
 	
 }
