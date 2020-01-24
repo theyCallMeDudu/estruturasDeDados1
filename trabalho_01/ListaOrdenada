@@ -1,22 +1,16 @@
 package trab_01;
 
-public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
+public class ListaOrdenada<T extends Comparable<T>> implements IListaOrdenada<T> {
 
 	protected No head;
 	protected int qtdItens;
+	protected final boolean crescente;
 	
-	public ListaOrdenada(){
-		
-		/**
-		 *  Definir se a lista sera ordenada
-		 *  crescente ou decrescente, podendo
-		 *  esta caracteristica ser alterada
-		 *  a qualquer momento
-		 */
-		
+	public ListaOrdenada(boolean crescente){
+		this.crescente = crescente;
 	}
 	
-	protected class No<T extends Comparable> implements Comparable<No> {
+	protected class No implements Comparable<No> {
 		public T item;
 		public No prox;
 		
@@ -25,27 +19,41 @@ public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
 			this.prox = null;
 		}
 
-		public int compareTo(No e) {
-			return this.item.compareTo(e);
+		@Override
+		public int compareTo(No o) {
+			return this.item.compareTo(o.item);
 		}	
 		
 	}
 	
-	public boolean inserir(T e) { //Incompleto ***
-		
-		No aux, no;
-		No ant = null;
-		
-//		aux = head;
-		no = new No(e);
-		
-//		while(aux != null) {
-//			ant = aux;
-//			aux = aux.prox;
-//			
-//		}
-		
-		
+	public boolean inserir(T e) {		
+		 No no = head, ant = null;
+		 int resultado = 0;
+		 
+		 for (no = head; (no != null); no = no.prox){
+			 resultado = no.item.compareTo(e);
+			 
+			 if(!this.crescente) {
+				 resultado *= -1;
+			 }
+			 
+			 if (resultado == 0)
+				 return false;
+			 
+			 if (resultado > 0)
+				 break;
+			 
+			 ant = no;
+		 }
+		 
+		 No aux = new No(e);
+		 
+		 	if (no == head)
+		 		head = aux;
+		 	else
+		 		ant.prox = aux;
+		 		aux.prox = no;
+		 return true;
 	}
 	
 	public boolean estaVazia() {
@@ -167,8 +175,17 @@ public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
 
 	@Override
 	public boolean contem(T e) {
-		return posicao(e) != -1;
+		//return posicao(e) != -1;
+			 No no;
+	
+			 for (no = head; ((no != null) && (no.item.compareTo(e) < 0)); no = no.prox);
+			 	
+			 	if ((no == null) || (no.item.compareTo(e) > 0))
+			 		return false;
+
+			 return true;
 	}
+
 
 	@Override
 	public int posicao(T e) {
@@ -216,24 +233,6 @@ public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
 	}
 
 	@Override
-	public boolean contemDuplicatas() { //Incompleto ***
-		No aux = head;
-		
-		while(aux != null) {
-			if(aux.item.compareTo(aux.prox)) {
-				return true;
-			}
-			return false;
-		}
-	}
-
-	@Override
-	public void removerDuplicatas() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public IListaOrdenada<T> copiar() {
 		// TODO Auto-generated method stub
 		return null;
@@ -243,12 +242,6 @@ public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
 	public boolean igual(IListaOrdenada<T> outraLista) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public void inverter() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -291,6 +284,18 @@ public class ListaOrdenada<T extends Comparable> implements IListaOrdenada<T> {
 	public void ordenarDecrescente() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void imprime() { //toString() desta Classe
+			No aux;
+			
+			System.out.println("Elementos da lista:");
+			
+			for(aux = head; aux != null; aux = aux.prox) {
+				System.out.print(aux.item + " ");
+			}
+			
+			System.out.println();
 	}
 	
 	
