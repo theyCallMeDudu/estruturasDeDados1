@@ -108,41 +108,13 @@ public interface IListaOrdenada<T> {
 	    
 	    public void removerTodos();
 	    
-
-		/**
-		 * Troca o valor da posição p1 com o valor da posição p2
-		 * @param p1 Posição p1
-		 * @param p2 Posição p2
-		 * @return Verdadeiro, se a troca foi feita; ou falso, caso contrário.
-		 */
-	    
-		public boolean trocar(int p1, int p2);
-
-		/**
+	    /**
 		 * Conta o número de ocorrências do item e
 		 * @param e Item a ser procurado
 		 * @return Número de ocorrência do item e
 		 */
 		
 		public int contaOcorrencias(T e);
-		
-		/**
-		 * Verifica se a lista contém itens duplicados
-		 * @return Verdadeiro, se a lista contém itens duplicados; ou falso, caso contrário
-		 */
-		
-		public boolean contemDuplicatas();
-
-		/**
-		 * Remove os valores duplicados da lista
-		 */
-		
-		public void removerDuplicatas();
-
-		/**
-		 * Gera uma cópia da lista
-		 * @return Cópia da lista
-		 */
 		
 		public IListaOrdenada<T> copiar();
 
@@ -153,12 +125,6 @@ public interface IListaOrdenada<T> {
 		 */
 		
 		public boolean igual(IListaOrdenada<T> outraLista);
-
-		/**
-		 * Inverte a posição os elementos da lista
-		 */
-		
-		public void inverter();
 
 		/**
 		 * Intercala os itens de duas listas gerando uma terceira lista
