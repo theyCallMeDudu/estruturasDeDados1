@@ -1,28 +1,51 @@
 package trab_01;
 
-import java.util.Scanner;
-
 public class Main {
 
 	public static void main(String[] args) {
+
+		//Teste para a lista crescente
+		LSEO<Integer> lista = new LSEO<>(true);  //integer escolhido para fins de teste, caso passe "false" a lista sera decrescente ("true", por default, crescente)
 		
-		Scanner input = new Scanner (System.in);
+        	System.out.println("Teste para a lista crescente:");
+		lista.inserir(5);
+		lista.inserir(8);
+		lista.inserir(2);
+		lista.inserir(1);
+		lista.inserir(10);
+		lista.inserir(20);
+		lista.inserir(15);
+		lista.imprime();
 		
-		System.out.println("Insira itens para a lista. Insira -1 quando quiser parar.");
-		do {
+		lista.removerInicio();
+		lista.removerFim();
+		lista.imprime();
+		
+		lista.removerPosicao(1);
+		lista.remover(8);
+		lista.imprime();
+		
+		
+		//Teste para a lista decrescente
+		LSEO<Integer> outralista = new LSEO<>(false);  //integer para fins de teste, caso passe "false" a lista sera decrescente ("true", por default, crescente)
+		
+		System.out.println("Teste para a lista decrescente:");
+		outralista.inserir(5);
+		outralista.inserir(8);
+		outralista.inserir(2);
+		outralista.inserir(1);
+		outralista.inserir(10);
+		outralista.inserir(20);
+		outralista.inserir(15);
+		outralista.imprime();
+		
+		outralista.removerInicio();
+		outralista.removerFim();
+		outralista.imprime();
+		
+		outralista.removerPosicao(1);
+		outralista.remover(8);
+		outralista.imprime();
 			
-			
-		} while (input.next()!="-1");
-				
-		System.out.println("Você deseja que a sua lista seja ordenada crescente (digite 1) ou decrescente (digite 2)?");
-		if (input.next()=="1") {
-			
-		}
-		else {
-			if (input.next()=="2") {
-				
-			}
-			System.out.println("Digite um número de ordenação válido.");
-		}		
 	}
 }
