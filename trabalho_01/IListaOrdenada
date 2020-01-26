@@ -14,16 +14,6 @@ public interface IListaOrdenada<T> {
 	     * @param e: elemento 
 	     */
 	    public boolean inserir(T e);
-	    
-	    /**
-	     * Altera o valor da posicao p da lista para e.
-	     * O primeiro item da lista esta na posicao ZERO.
-	     * @param p PosiÃ§Ã£o de alteraÃ§Ã£o. Valores vÃ¡lidos: 0 a quantidade-1.
-	     * @param e Item a ser inserido.
-	     * @return Antigo item na posiÃ§Ã£o p da lista; ou null, caso p seja invÃ¡lido.
-	     */
-	    
-	    public T alterar(int p, T e);
 
 	    /**
 	     * Remove o item do inÃ­cio da lista e o retorna.
@@ -107,75 +97,4 @@ public interface IListaOrdenada<T> {
 	     */
 	    
 	    public void removerTodos();
-	    
-	    /**
-		 * Conta o número de ocorrências do item e
-		 * @param e Item a ser procurado
-		 * @return Número de ocorrência do item e
-		 */
-		
-		public int contaOcorrencias(T e);
-		
-		public IListaOrdenada<T> copiar();
-
-		/**
-		 * Verifica se duas listas são iguais
-		 * @param outraLista A outra lista que vai ser usada na comparação
-		 * @return Verdadeiro, se as listas são iguais; ou falso, caso contrário
-		 */
-		
-		public boolean igual(IListaOrdenada<T> outraLista);
-
-		/**
-		 * Intercala os itens de duas listas gerando uma terceira lista
-		 * @param outraLista A outra lista que vai ser usada na intercalação
-		 * @return A nova lista com os valores intercalados
-		 */
-		
-		public IListaOrdenada<T> intercalar(IListaOrdenada<T> outraLista);
-
-		/**
-		 * Concatena duas listas gerando uma terceira lista
-		 * @param outraLista A outra lista que vai ser usada na concatenação
-		 * @return A nova lista com os valores concatenados
-		 */
-		
-		public IListaOrdenada<T> concatenar(IListaOrdenada<T> outraLista);
-
-		/**
-		 * Calcula a interseção de duas listas, gerando uma terceira lista sem duplicatas
-		 * @param outraLista A outra lista que vai ser usada na interseção
-		 * @return A nova lista com os valores da interseção, sem valores duplicados
-		 */
-		
-		public IListaOrdenada<T> intersecao(IListaOrdenada<T> outraLista);
-
-		/**
-		 * Calcula a união de duas listas, gerando uma terceira lista sem duplicatas
-		 * @param outraLista A outra lista que vai ser usada na união
-		 * @return A nova lista com os valores da união, sem valores duplicados
-		 */
-		
-		public IListaOrdenada<T> uniao(IListaOrdenada<T> outraLista);
-
-		/**
-		 * Separa a lista em duas: uma com os valores da posiçao 0 a p e outra
-		 * com os valores da posição p+1 em diante
-		 * @param p Posição de particionamento da lista
-		 * @return A segunda lista do particionamento
-		 */
-		
-		public IListaOrdenada<T> separar(int p);
-		
-	     /**
-	      * Ordena os itens da lista de forma crescente
-	      */
-		
-		public void ordernarCrescente();
-		
-		/**
-	     * Ordena os itens da lista de forma decrescente
-	     */
-		
-		public void ordenarDecrescente();
-	}
+}
