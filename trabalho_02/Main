@@ -9,24 +9,24 @@ import java.util.StringTokenizer;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+		Scanner leitor = new Scanner(System.in);
 		
 		System.out.println("Insira o nome do arquivo:");
 		
-		String nomeArq = scan.next();
+		String nomeArquivo = leitor.next();
 		
 		String nome = "./src/trab_02/texto.txt";
 		
-		if(nomeArq != null && !nomeArq.isEmpty()) {
-			nome = nomeArq;
+		if(nomeArquivo != null && !nomeArquivo.isEmpty()) {
+			nome = nomeArquivo;
 		}
 		
 		boolean crescente = true;
 		
 		System.out.println("Diga se quer uma lista crescente ou decrescente.");
-		System.out.println("1 para crescente e 2 para decrescente:"); 
+		System.out.println("Digite 1 para crescente e 2 para decrescente:"); 
 		
-		if(scan.nextInt() == 2) {
+		if(leitor.nextInt() == 2) {
 			crescente = false;
 		} else {
 			crescente = true;
@@ -34,17 +34,17 @@ public class Main {
 		
 		
 		
-		StringBuffer sb = new StringBuffer();
+		StringBuffer montador = new StringBuffer();
 		try {
 
 			FileReader arq = new FileReader(nome);
-			BufferedReader lerArq = new BufferedReader(arq);
+			BufferedReader lerArquivo = new BufferedReader(arq);
 
-			String linha = lerArq.readLine();
+			String linha = lerArquivo.readLine();
 
 			while (linha != null) {
-				sb.append(linha);
-				linha = lerArq.readLine();
+				montador.append(linha);
+				linha = lerArquivo.readLine();
 			}
 
 			arq.close();
@@ -53,7 +53,7 @@ public class Main {
 			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
 		}
 		
-		String textoCompleto = sb.toString();
+		String textoCompleto = montador.toString();
 		
 		StringTokenizer tokenizer = new StringTokenizer(textoCompleto);
 		
@@ -67,8 +67,16 @@ public class Main {
 			listaPalavras.inserir(palavra);
 		}
 		
-		System.out.println(listaPalavras.quantidade());
-		System.out.println(listaPalavras.retornaMaior().texto);
+		System.out.println("Quantidade de palavras distintas: " + listaPalavras.quantidade());
+		System.out.println("");
+		System.out.println("Maior palavra presente no texto: " + listaPalavras.retornaMaior().texto);
+		System.out.println("");
+		
+		/*
+		 * A ordem adotada para as palavras foi alfabética
+		 * De A a Z para crescente e de Z a A para decrescente.
+		 */
+		
 		listaPalavras.imprime();
 		
 	}
