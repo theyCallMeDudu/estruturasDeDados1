@@ -1,3 +1,7 @@
+/*
+ * Trabalho 2 da disciplina Estrutura de Dados 1 feito por Eduardo Coelho e Pedro Maia.
+ */
+
 package trab_02;
 
 import java.io.BufferedReader;
@@ -35,10 +39,12 @@ public class Main {
 		
 		
 		StringBuffer montador = new StringBuffer();
+		
 		try {
 
-			FileReader arq = new FileReader(nome);
-			BufferedReader lerArquivo = new BufferedReader(arq);
+			FileReader file = new FileReader(nome);
+			
+			BufferedReader lerArquivo = new BufferedReader(file);
 
 			String linha = lerArquivo.readLine();
 
@@ -47,7 +53,7 @@ public class Main {
 				linha = lerArquivo.readLine();
 			}
 
-			arq.close();
+			file.close();
 			
 		} catch (IOException e) {
 			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
