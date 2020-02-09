@@ -6,6 +6,15 @@ package trab_03;
 
 import java.util.Scanner;
 
+/*
+ * Importante ressaltar que o algoritmo fornecido
+ * em pseudocódigo foi "traduzido" para Java, e, portanto,
+ * não há tratamento caso utilize-se espaços entre os caracteres.
+ * Sendo assim, pedimos atenção caso os exemplos de teste sejam copiados
+ * e colados, para o caso de haver espaços nas expressões ou forem
+ * inseridos espaços entre os caracteres.  
+ */
+
 public class Main {
 
 	public static void main(String[] args) {
