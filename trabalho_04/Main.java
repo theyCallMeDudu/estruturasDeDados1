@@ -73,7 +73,7 @@ public class Main {
 		}
 		
 		System.out.print("> Nº de palavras distintas: ");
-		System.out.println(abb.nrFolhas());
+		System.out.println(abb.quantidade());
 		System.out.println();
 		System.out.print("> Maior palavra presente no texto: ");
 		System.out.println(abb.maior());
